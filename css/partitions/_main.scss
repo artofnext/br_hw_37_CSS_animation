@@ -41,7 +41,7 @@ main {
     position: absolute;
     top: 0;
     left: 0;
-    backface-visibility: hidden;
+    // backface-visibility: hidden;
 }
 
 .card__face {
@@ -66,6 +66,7 @@ main {
 
 .card__container:hover .rotating {
     transform: rotateY( 180deg );
+
 }
 
 .rank, .suit {
@@ -75,6 +76,24 @@ main {
 
     &::before {
         font-size: 50px;
+    }
+}
+
+// IE 10, 11 
+.card__container:hover .card__back {
+    visibility: hidden;
+    transition-delay: .3s;
+}
+
+// IE 10, 11 override 
+@supports (transform-style: preserve-3d) {
+    .card__container:hover .card__back {
+        visibility: initial;
+        transition-delay: unset;
+    }
+
+    .card__face, .card__back {
+        backface-visibility: hidden;
     }
 }
 
